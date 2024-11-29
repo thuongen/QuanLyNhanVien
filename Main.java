@@ -1,7 +1,7 @@
 package QuanLyNhanVien;
 
-import java.util.ArrayList;// thuong
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Scanner;  
 public class Main {
     public static Scanner Nhap = new Scanner(System.in);
     public static void main(String[] args) 
@@ -51,3 +51,10 @@ public class Main {
     }
 }
 
+
+
+// git branch=> xem đang ở nhánh nào 
+// tạo nhánh: git brach thuong
+// git checkout thuong
+//=> commit trên thanh công cụ
+//=> git push

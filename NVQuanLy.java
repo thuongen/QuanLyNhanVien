@@ -1,7 +1,8 @@
 package QuanLyNhanVien ;
 
 import java.security.PublicKey;
-import java.text.DateFormat;
+import java.sql.Date;
+
 
 public class NVQuanLy extends NhanVien
 {
@@ -45,6 +46,7 @@ public class NVQuanLy extends NhanVien
     public void setHeSoLuong(double heSoLuong){
         this.heSoLuong = heSoLuong;
     }
+    //tính lương
     @Override 
     public double tinhLuong(){
         return luongCoBan*heSoLuong;
