@@ -63,32 +63,40 @@ public class DanhSachNV
     // Chức năng cập nhật 
     public void CapNhat()
     {
-        while (true) 
-        {    
-            do {
-                System.out.println("Ban muon cap nhat thong tin cua nhan vien quan li hay san xuat: ");
-                System.out.println("1. Nhan vien quan ly:");
-                System.out.println("2. Nhan vien san xuat:");
-                System.out.println("0. Quay lai menu chinh:");
-                chon = Nhap.nextInt();
-                switch (chon) 
-                {
-                    case 1://///////////tạm dừng
-                    case 2:
-                        System.out.println("Nhap vao ma nhan vien ban muon cap nhat: ");
-                        maCapNhat = Nhap.nextInt();
-                        //for(i=1; i<=DSNhanVienSX.size(); i++)
-                        //{
-                        //    if(DSNhanVienSX.get(i).getMaNV().equals(maCapNhat))
-                        //}
-                    case 0:
-                        return;
-                    default:
-                        System.out.println("Lua chon khong hop le vui long thu lai. ");
-                        break;
+        System.out.println("Nhap vao ma nhan vien muon cap nhat: ");
+        String maNV = Nhap.nextLine();
+        Nhap.nextLine();  
+
+        if(maNV.startsWith("QL")){
+            boolean isExistNhanVien = false;// nếu đi hết vòng for mà ko tìm thấy manv đó
+            for(int i=1;i<= DSNhanVienQL.size();i++)
+                if(DSNhanVienQL.get(i).getMaNV().equals(maNV)){
+                    isExistNhanVien = true;
+                    DSNhanVienQL.get(i).Nhap();
+                    System.out.println("Cap nhat thanh cong");
+                    break;
                 }
-                } while (chon<0||chon>2);
+            if(!isExistNhanVien)
+                System.out.println("Khong tim thay ma nv");
+            
+            
         }
+        else 
+            if(maNV.startsWith("SX")){
+                boolean isExistNhanVien = false;// nếu đi hết vòng for mà ko tìm thấy manv đó
+                for(int i=1;i<= DSNhanVienSX.size();i++)
+                    if(DSNhanVienSX.get(i).getMaNV().equals(maNV)){
+                        isExistNhanVien = true;
+                        DSNhanVienSX.get(i).Nhap();
+                        System.out.println("Cap nhat thanh cong");
+                        break;
+                    }
+                if(!isExistNhanVien)
+                    System.out.println("Khong tim thay ma nv");
+            }
+            else 
+                System.out.println("Ma nhap ko hop le");
+
     }
     //Phương thức chọn nhan vien san xuat hay nhan vien quan li
     public void Xem()

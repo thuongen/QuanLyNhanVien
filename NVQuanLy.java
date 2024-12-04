@@ -4,14 +4,14 @@ import java.security.PublicKey;
 import java.sql.Date;
 
 
-public class NVQuanLy extends NhanVien
+public class NVQuanLy extends NhanVien implements TinhLuong
 {
 
     private double luongCoBan;
     private double heSoLuong;
     
-    public NVQuanLy(String maNV, String hoTen, Date ngaySinh, String diaChi, double luongCoBan , double heSoLuong){
-        super( maNV, hoTen, ngaySinh, diaChi);
+    public NVQuanLy(String maNV, String hoTen, Date ngaySinh, String diaChi, double luongCoBan, double heSoLuong) {
+        super(maNV, hoTen, ngaySinh, diaChi); 
         this.luongCoBan = luongCoBan;
         this.heSoLuong = heSoLuong;
     }

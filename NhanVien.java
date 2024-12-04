@@ -11,6 +11,7 @@ public abstract class NhanVien implements TinhLuong{
     private Date ngaySinh;
     private String diaChi;     
     // Constructor
+    public NhanVien(){};
     public NhanVien(String maNV, String hoTen, Date ngaySinh) {
         this.maNV = maNV;
         this.hoTen = hoTen;
@@ -19,9 +20,9 @@ public abstract class NhanVien implements TinhLuong{
     }
     // Nhập thông tin nhân viên
     public void Nhap() {
-        System.out.println("Nhap vao ma nhan vien: ");
-        this.maNV = Nhap.nextLine();
-        Nhap.nextLine(); 
+        //System.out.println("Nhap vao ma nhan vien: ");
+        //this.maNV = Nhap.nextLine();
+        //Nhap.nextLine(); 
         System.out.println("Nhap vao ten nhan vien: ");
         this.hoTen = Nhap.nextLine();
         System.out.println("Nhap ngay sinh cua nhan vien: ");
