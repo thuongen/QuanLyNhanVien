@@ -6,11 +6,11 @@ import java.util.Scanner;
 
 public abstract class NhanVien {
     Scanner Nhap = new Scanner(System.in);
-    private int maNV;          
+    private String maNV;          
     public String hoTen;  
     private Date ngaySinh;     
     // Constructor
-    public NhanVien(int maNV, String hoTen, Date ngaySinh) {
+    public NhanVien(String maNV, String hoTen, Date ngaySinh) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
@@ -18,8 +18,8 @@ public abstract class NhanVien {
     // Nhập thông tin nhân viên
     public void Nhap() {
         System.out.println("Nhap vao ma nhan vien: ");
-        maNV = Nhap.nextInt();
-        Nhap.nextLine(); 
+        maNV = Nhap.nextLine();
+        Nhap.nextLine();
         System.out.println("Nhap vao ten nhan vien: ");
         hoTen = Nhap.nextLine();
         System.out.println("Nhap ngay sinh cua nhan vien: ");
@@ -40,11 +40,11 @@ public abstract class NhanVien {
     }
 
     // Getters and Setters
-    public int getMaNV() {
+    public String getMaNV() {
         return maNV;
     }
 
-    public void setMaNV(int maNV) {
+    public void setMaNV(String maNV) {
         this.maNV = maNV;
     }
 

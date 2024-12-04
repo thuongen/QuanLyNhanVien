@@ -1,5 +1,5 @@
 package QuanLyNhanVien;
 
-public class Interface {
-    
+public interface Interface {
+    double tinhLuong();
 }

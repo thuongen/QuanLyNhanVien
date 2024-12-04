@@ -13,9 +13,9 @@ public class Main
         {   
             System.out.println("Ban muon lam gi: ");
             System.out.println("1: Them moi thong tin nhan vien: ");
-            System.out.println("1: Cap nhat thong tin nhan vien: ");
-            System.out.println("2: Xem thong tin nhan vien: ");
-            System.out.println("3: Xoa thong tin nhan vien: ");
+            System.out.println("2: Cap nhat thong tin nhan vien: ");
+            System.out.println("3: Xem thong tin nhan vien: ");
+            System.out.println("4: Xoa thong tin nhan vien: ");
             System.out.println("5: Sap xep theo luong nhan vien: ");
             System.out.println("6: Tim nhan vien theo ma: ");
             System.out.println("7: Thoat ra khoi menu");
@@ -39,7 +39,7 @@ public class Main
                     danhSachNV.SapXep();            
                     break;
                 case 6:
-                
+                    danhSachNV.TimNV();
                 case 7:
                     return;
             }
