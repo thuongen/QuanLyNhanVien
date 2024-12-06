@@ -58,43 +58,42 @@ public class DanhSachNV
             }while (chon<0||chon>2);        
         }
     }
-    public void CapNhat()
+    public void CapNhat() // còn lỗi phương thức cập nhật + tìm mã nhân viên gặp lỗi
     {
-        while (true) 
-        {    
-            System.out.println("Ban muon xem thong tin cua nhan vien quan ly hay san xuat: ");
-            System.out.println("1. Nhan vien quan ly:");
-            System.out.println("2. Nhan vien san xuat:");
-            System.out.println("3. Quay lai menu chinh:");
-            chon = Nhap.nextInt();
-            switch (chon) 
-            {
-                case 1:
-                case 2:
-                    if (DSNhanVienSX.isEmpty()) {
-                        System.out.println("Danh sach nhan vien trong, khong co du lieu de cap nhat.");
-                        return;
-                    }
-                    System.out.println("Nhap ma nhan vien muon cap nhat: ");
-                    String maCapNhat = Nhap.nextLine();
-                    boolean found = false;
-                    for (NVSanXuat nv : DSNhanVienSX)
-                        if (nv.getMaNV().equalsIgnoreCase(maCapNhat)) 
-                        {
-                            found = true;
-                            System.out.println("Nhap thong tin moi cho nhan vien: ");
-                            nv.Nhap();
-                            System.out.println("Thong tin nhan vien da duoc cap nhat thanh cong.");
-                            break;
-                        }
-                    if (!found)
-                        System.out.println("Khong tim thay nhan vien co ma: " + maCapNhat);
-                case 3:
-                    return;
-                default:
+        System.out.println("Nhap vao ma nhan vien muon cap nhat: ");
+        String maNV = Nhap.nextLine();
+        Nhap.nextLine();  
+
+        if(maNV.startsWith("QL")){
+            boolean isExistNhanVien = false;// nếu đi hết vòng for mà ko tìm thấy manv đó
+            for(int i=1;i<= DSNhanVienQL.size();i++)
+                if(DSNhanVienQL.get(i).getMaNV().equals(maNV)){
+                    isExistNhanVien = true;
+                    DSNhanVienQL.get(i).Nhap();
+                    System.out.println("Cap nhat thanh cong");
                     break;
-            }
+                }
+            if(!isExistNhanVien)
+                System.out.println("Khong tim thay ma nv");
+            
+            
         }
+        else 
+            if(maNV.startsWith("SX")){
+                boolean isExistNhanVien = false;// nếu đi hết vòng for mà ko tìm thấy manv đó
+                for(int i=1;i<= DSNhanVienSX.size();i++)
+                    if(DSNhanVienSX.get(i).getMaNV().equals(maNV)){
+                        isExistNhanVien = true;
+                        DSNhanVienSX.get(i).Nhap();
+                        System.out.println("Cap nhat thanh cong");
+                        break;
+                    }
+                if(!isExistNhanVien)
+                    System.out.println("Khong tim thay ma nv");
+            }
+            else 
+                System.out.println("Ma nhap ko hop le");
+
     }
     //Phương thức chọn nhan vien san xuat hay nhan vien quan ly
     public void Xem()
@@ -129,7 +128,7 @@ public class DanhSachNV
             }
         }
     }
-    public void Xoa()
+    public void Xoa() //Phương thức xóa còn lỗi + chưa tìm được mã nhân viên thì out ra ngoài
     {
         while (true) 
         {    
@@ -168,7 +167,7 @@ public class DanhSachNV
             }
         }
     }
-    public void SapXep()
+    public void SapXep() // sắp xếp theo lương với số tiền lương tăng dần
     {
         while (true) 
         {    
@@ -185,8 +184,7 @@ public class DanhSachNV
                         System.out.println("Danh sach nhan vien san xuat dang trong.");
                         break;
                     }
-                    // Sắp xếp danh sách nhân viên sản xuất theo lương
-                    DSNhanVienSX.sort((nv1, nv2) -> Double.compare(nv1.tinhLuong(), nv2.tinhLuong()));
+                    DSNhanVienSX.sort((nv1, nv2) -> Double.compare(nv1.tinhLuong(), nv2.tinhLuong()));//sort tăng dần, double.compare: so sánh 2 giá trị kiểu double
                     System.out.println("Danh sach nhan vien san xuat da duoc sap xep theo luong.");
                     break;
                 case 3:
@@ -201,7 +199,7 @@ public class DanhSachNV
         String maTim;
         while (true) 
         {    
-            System.out.println("Ban muon sap xep luong cua nhan vien quan li hay san xuat: ");
+            System.out.println("Ban muon tim trong danh sach nhan vien quan li hay san xuat: ");
             System.out.println("1. Nhan vien quan ly:");
             System.out.println("2. Nhan vien san xuat:");
             System.out.println("3. Quay lai menu chinh:");
@@ -211,7 +209,21 @@ public class DanhSachNV
                 case 1:
                 case 2:
                     System.out.println("Nhap vao ma nhan vien ma ban muon tim trong danh sach: ");
-                    maTim = Nhap.nextLine();
+                    maTim = Nhap.nextLine(); // Đọc mã cần tìm
+                    boolean foundSX = false; // Đặt cờ để kiểm tra tìm thấy
+                    
+                    for (i = 0; i < DSNhanVienSX.size(); i++) { // Duyệt qua danh sách
+                        if (maTim.equalsIgnoreCase(DSNhanVienSX.get(i).getMaNV())) { // So sánh mã
+                            DSNhanVienSX.get(i).Xuat(); // Xuất thông tin
+                            foundSX = true; // Đặt cờ thành true
+                            break; // Thoát khỏi vòng lặp
+                        }
+                    }
+                    
+                    if (!foundSX) { // Nếu không tìm thấy
+                        System.out.println("Khong tim thay nhan vien san xuat voi ma: " + maTim);
+                    }
+                    break;                
                 case 3:
                     return;
                 default:

@@ -7,7 +7,7 @@ public class NVSanXuat extends NhanVien implements Interface
 {
     public int soSP, donGiaSP;
     public double luong;
-    public NVSanXuat(String maNV, String hoTen,  Date ngaySinh, int soSP, int donGiaSP)
+    public NVSanXuat(String maNV, String hoTen, Date ngaySinh, int soSP, int donGiaSP)
     {
         super(maNV, hoTen, ngaySinh);
         this.soSP = soSP;
