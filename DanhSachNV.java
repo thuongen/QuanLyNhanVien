@@ -96,7 +96,7 @@ public class DanhSachNV
             }
         }
     }
-    //Phương thức chọn nhan vien san xuat hay nhan vien quan li
+    //Phương thức chọn nhan vien san xuat hay nhan vien quan ly
     public void Xem()
     {
         while (true) 
@@ -142,8 +142,25 @@ public class DanhSachNV
             {
                 case 1:
                 case 2:
-                    System.out.println("Nhap vao ma nhan vien ma ban muon xoa ra khoi danh sach: ");
+                    if (DSNhanVienSX.isEmpty()) {
+                        System.out.println("Danh sach nhan vien san xuat dang trong.");
+                        break;
+                    }
+                    System.out.println("Nhap vao ma nhan vien ma ban muon xoa: ");
                     maXoa = Nhap.nextLine();
+                    boolean foundSX = false;
+                    for (int i = 0; i < DSNhanVienSX.size(); i++) {
+                        if (DSNhanVienSX.get(i).getMaNV().equalsIgnoreCase(maXoa)) {
+                            DSNhanVienSX.remove(i);
+                            System.out.println("Nhan vien san xuat voi ma " + maXoa + " da duoc xoa.");
+                            foundSX = true;
+                            break;
+                        }
+                    }
+                    if (!foundSX) {
+                        System.out.println("Khong tim thay nhan vien san xuat co ma: " + maXoa);
+                    }
+                    break;
                 case 3:
                     return;
                 default:
@@ -164,6 +181,14 @@ public class DanhSachNV
             {
                 case 1:
                 case 2:
+                    if (DSNhanVienSX.isEmpty()) {
+                        System.out.println("Danh sach nhan vien san xuat dang trong.");
+                        break;
+                    }
+                    // Sắp xếp danh sách nhân viên sản xuất theo lương
+                    DSNhanVienSX.sort((nv1, nv2) -> Double.compare(nv1.tinhLuong(), nv2.tinhLuong()));
+                    System.out.println("Danh sach nhan vien san xuat da duoc sap xep theo luong.");
+                    break;
                 case 3:
                     return;
                 default:
