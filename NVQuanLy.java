@@ -29,7 +29,7 @@ public class NVQuanLy extends NhanVien implements TinhLuong
         super.Xuat();
         System.out.println("He so luong:" + heSoLuong);
         System.out.println("luong co ban :"+ luongCoBan);
-        System.out.println("Tien luong nv quan ly" + tinhLuong());//Còn chỉnh sửa
+        System.out.println("Tien luong nv quan ly :" + tinhLuong());
         
     }
     //set_get

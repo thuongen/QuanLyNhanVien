@@ -11,8 +11,8 @@ public abstract class NhanVien implements TinhLuong{
     private Date ngaySinh;
     private String diaChi;     
     // Constructor
-    public NhanVien(){};
-    public NhanVien(String maNV, String hoTen, Date ngaySinh) {
+    
+    public NhanVien(String maNV, String hoTen, Date ngaySinh, String diaChi) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
@@ -25,6 +25,7 @@ public abstract class NhanVien implements TinhLuong{
         //Nhap.nextLine(); 
         System.out.println("Nhap vao ten nhan vien: ");
         this.hoTen = Nhap.nextLine();
+        Nhap.nextLine();
         System.out.println("Nhap ngay sinh cua nhan vien: ");
         try {
             SimpleDateFormat d = new SimpleDateFormat("dd/MM/yyyy");
@@ -43,6 +44,7 @@ public abstract class NhanVien implements TinhLuong{
         System.out.println("Ma NV    : " + maNV);
         System.out.println("Ho ten   : " + hoTen);
         System.out.println("Ngay sinh: " + this.ngaySinh.toString());
+        System.out.println("Dia Chi   : " + diaChi);
     }
 
     // Getters and Setters
