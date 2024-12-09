@@ -3,7 +3,7 @@ package QuanLyNhanVien;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class DanhSachNV 
+public class DanhSachNV extends Interface
 {
     int chon, n , i;
     String maCapNhat, maXoa;
@@ -66,7 +66,7 @@ public class DanhSachNV
 
         if(maNV.startsWith("QL")){
             boolean isExistNhanVien = false;// nếu đi hết vòng for mà ko tìm thấy manv đó
-            for(int i=1;i<= DSNhanVienQL.size();i++)
+            for(int i=0; i< DSNhanVienQL.size(); i++)
                 if(DSNhanVienQL.get(i).getMaNV().equals(maNV)){
                     isExistNhanVien = true;
                     DSNhanVienQL.get(i).Nhap();
@@ -81,7 +81,7 @@ public class DanhSachNV
         else 
             if(maNV.startsWith("SX")){
                 boolean isExistNhanVien = false;// nếu đi hết vòng for mà ko tìm thấy manv đó
-                for(int i=1;i<= DSNhanVienSX.size();i++)
+                for(int i=0; i<DSNhanVienSX.size(); i++)
                     if(DSNhanVienSX.get(i).getMaNV().equals(maNV)){
                         isExistNhanVien = true;
                         DSNhanVienSX.get(i).Nhap();
@@ -181,7 +181,7 @@ public class DanhSachNV
                 case 1:
                 case 2:
                     if (DSNhanVienSX.isEmpty()) {
-                        System.out.println("Danh sach nhan vien san xuat dang trong.");
+                        System.out.println("Danh sach nhan vien dang trong.");
                         break;
                     }
                     DSNhanVienSX.sort((nv1, nv2) -> Double.compare(nv1.tinhLuong(), nv2.tinhLuong()));//sort tăng dần, double.compare: so sánh 2 giá trị kiểu double
@@ -209,14 +209,14 @@ public class DanhSachNV
                 case 1:
                 case 2:
                     System.out.println("Nhap vao ma nhan vien ma ban muon tim trong danh sach: ");
-                    maTim = Nhap.nextLine(); // Đọc mã cần tìm
-                    boolean foundSX = false; // Đặt cờ để kiểm tra tìm thấy
-                    
-                    for (i = 0; i < DSNhanVienSX.size(); i++) { // Duyệt qua danh sách
-                        if (maTim.equalsIgnoreCase(DSNhanVienSX.get(i).getMaNV())) { // So sánh mã
-                            DSNhanVienSX.get(i).Xuat(); // Xuất thông tin
-                            foundSX = true; // Đặt cờ thành true
-                            break; // Thoát khỏi vòng lặp
+                    maTim = Nhap.nextLine(); 
+                    boolean foundSX = false; 
+                    for (NhanVien nv : DSNhanVienSX) 
+                    { 
+                        if (nv.getMaNV().equalsIgnoreCase(maTim)) { // So sánh mã
+                            nv.Xuat();
+                            foundSX = true;
+                            break;
                         }
                     }
                     

@@ -35,8 +35,7 @@ public class Main
                 case 4: 
                     danhSachNV.Xoa();
                     break;
-                case 5:
-                    danhSachNV.SapXep();            
+                case 5:           
                     break;
                 case 6:
                     danhSachNV.TimNV();
