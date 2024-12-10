@@ -49,7 +49,7 @@ public abstract class NhanVien implements TinhLuong{
         
 
     }
-
+//////////
     // Xuất thông tin nhân viên
     public void Xuat() {
         System.out.println("Ma NV    : " + maNV);
