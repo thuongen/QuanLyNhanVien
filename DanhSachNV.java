@@ -306,64 +306,69 @@ public class DanhSachNV
 
 
     //chức năng tìm 
-    public void TimNV()
-    {
-       
-        while (true) 
-        {    
+    public void TimNV() {
+        
+    
+        while (true) {
             do {
-                String maTim;
-                System.out.println("Ban muon sap xep luong cua nhan vien quan li hay san xuat: ");
-                System.out.println("1. Nhan vien quan ly:");
-                System.out.println("2. Nhan vien san xuat:");
-                System.out.println("0. Quay lai menu chinh:");
-                chon = Nhap.nextInt();
-                switch (chon) 
-                {
+                System.out.println("Ban muon tim kiem nhan vien quan ly hay san xuat?");
+                System.out.println("1. Nhan vien quan ly");
+                System.out.println("2. Nhan vien san xuat");
+                System.out.println("0. Quay lai menu chinh");
+                System.out.print("Lua chon cua ban: ");
+                int chon = Nhap.nextInt();
+                Nhap.nextLine(); // Loại bỏ ký tự xuống dòng còn lại
+        
+                switch (chon) {
                     case 1:
-                        System.out.println("Nhap vao ma nhan vien quan ly ma ban muon tim trong danh sach: ");
-                        maTim = Nhap.nextLine().trim(); 
-                        Nhap.nextLine();
-                        boolean foundQL = false; 
-                        
-                        for (i = 0; i < DSNhanVienQL.size(); i++) { 
-                            if (DSNhanVienQL.get(i).getMaNV().trim().equalsIgnoreCase(maTim)) { 
-                                DSNhanVienQL.get(i).Xuat(); 
-                                foundQL = true; 
-                                break; 
+                        System.out.print("Nhap vao ma nhan vien quan ly ma ban muon tim: ");
+                        String maTimQL = Nhap.nextLine().trim();
+                        boolean foundQL = false;
+        
+                        for (NhanVien nv : DSNhanVienQL) {
+                            if (maTimQL.equalsIgnoreCase(nv.getMaNV().trim())) {
+                                System.out.println("\nThong tin nhan vien quan ly:");
+                                nv.Xuat();
+                                foundQL = true;
+                                break;
                             }
                         }
-                        
-                        if (!foundQL) { 
-                            System.out.println("Khong tim thay nhan vien quan ly voi ma: " + maTim);
+        
+                        if (!foundQL) {
+                            System.out.println("Khong tim thay nhan vien quan ly voi ma: " + maTimQL);
                         }
-                        break; 
+                        break;
+        
                     case 2:
-                        System.out.println("Nhap vao ma nhan vien san xuat ma ban muon tim trong danh sach: ");
-                        maTim = Nhap.nextLine().trim(); // Đọc mã cần tìm
-                        Nhap.nextLine();
-                        boolean foundSX = false; // Đặt cờ để kiểm tra tìm thấy
-                        
-                        for (i = 0; i < DSNhanVienSX.size(); i++) { // Duyệt qua danh sách
-                            if (maTim.equalsIgnoreCase(DSNhanVienSX.get(i).getMaNV().trim())) { // So sánh mã
-                                DSNhanVienSX.get(i).Xuat(); // Xuất thông tin
-                                foundSX = true; // Đặt cờ thành true
-                                break; // Thoát khỏi vòng lặp
+                        System.out.print("Nhap vao ma nhan vien san xuat ma ban muon tim: ");
+                        String maTimSX = Nhap.nextLine().trim();
+                        boolean foundSX = false;
+        
+                        for (NhanVien nv : DSNhanVienSX) {
+                            if (maTimSX.equalsIgnoreCase(nv.getMaNV().trim())) {
+                                System.out.println("\nThong tin nhan vien san xuat:");
+                                nv.Xuat();
+                                foundSX = true;
+                                break;
                             }
                         }
-                        
-                        if (!foundSX) { // Nếu không tìm thấy
-                            System.out.println("Khong tim thay nhan vien san xuat voi ma: " + maTim);
+        
+                        if (!foundSX) {
+                            System.out.println("Khong tim thay nhan vien san xuat voi ma: " + maTimSX);
                         }
-                        break; 
+                        break;
+        
                     case 0:
+                        System.out.println("Quay lai menu chinh...");
                         return;
+        
                     default:
-                        System.out.println("Lua chon khong hop le vui long thu lai. "); 
+                        System.out.println("Lua chon khong hop le, vui long thu lai.");
                 }
-            } while (chon < 0 ||chon >2);
+                } while (chon <0 || chon>2);
         }
     }
+    
     // phương thức tự động tăng id nhân viên quản lý => tìm mã nv max trong danh sách và tăng thêm 1 đơn vị
     private String getMaNVQL() {
         if (DSNhanVienQL.size() == 0)

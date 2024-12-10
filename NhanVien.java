@@ -25,7 +25,7 @@ public abstract class NhanVien implements TinhLuong{
         //Nhap.nextLine(); 
         System.out.println("Nhap vao ten nhan vien: ");
         this.hoTen = Nhap.nextLine();
-        
+        Nhap.nextLine();
          this.ngaySinh = null;
         SimpleDateFormat d = new SimpleDateFormat("dd/MM/yyyy");
         boolean valid = false;
