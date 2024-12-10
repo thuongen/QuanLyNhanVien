@@ -25,17 +25,28 @@ public abstract class NhanVien implements TinhLuong{
         //Nhap.nextLine(); 
         System.out.println("Nhap vao ten nhan vien: ");
         this.hoTen = Nhap.nextLine();
-        Nhap.nextLine();
-        System.out.println("Nhap ngay sinh cua nhan vien: ");
-        try {
-            SimpleDateFormat d = new SimpleDateFormat("dd/MM/yyyy");
-            this.ngaySinh = d.parse(Nhap.nextLine());
-        } catch (Exception ex) {
-            System.out.println("Ngay sinh khong hop le, vui long kiem tra lai.");
+        
+         this.ngaySinh = null;
+        SimpleDateFormat d = new SimpleDateFormat("dd/MM/yyyy");
+        boolean valid = false;
+
+        while (!valid) {
+            System.out.println("Nhap ngay sinh cua nhan vien: ");
+            try {
+                ngaySinh = d.parse(Nhap.nextLine());
+                valid = true; // Nếu không có lỗi, thoát khỏi vòng lặp
+            } catch (Exception ex) {
+                System.out.println("Ngay sinh khong hop le, vui long kiem tra lai.");
+            }
         }
+
+        
+
+
+
         System.out.println("Nhap vao dia chi nhan vien");
         this.diaChi = Nhap.nextLine();
-        Nhap.nextLine();
+        
 
     }
 
