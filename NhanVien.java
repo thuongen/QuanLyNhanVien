@@ -4,31 +4,39 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
-public abstract class NhanVien {
+public abstract class NhanVien implements Interface{
     Scanner Nhap = new Scanner(System.in);
     private String maNV;          
     public String hoTen;  
-    private Date ngaySinh;     
+    private Date ngaySinh;
+    private String diaChi;     
     // Constructor
-    public NhanVien(String maNV, String hoTen, Date ngaySinh) {
+    
+    public NhanVien(String maNV, String hoTen, Date ngaySinh, String diaChi) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
     }
     // Nhập thông tin nhân viên
     public void Nhap() {
-        System.out.println("Nhap vao ma nhan vien: ");
-        maNV = Nhap.nextLine();
-        Nhap.nextLine();
         System.out.println("Nhap vao ten nhan vien: ");
-        hoTen = Nhap.nextLine();
-        System.out.println("Nhap ngay sinh cua nhan vien: ");
-        try {
-            SimpleDateFormat d = new SimpleDateFormat("dd/MM/yyyy");
-            ngaySinh = d.parse(Nhap.nextLine());
-        } catch (Exception ex) {
-            System.out.println("Ngay sinh khong hop le, vui long kiem tra lai.");
+        this.hoTen = Nhap.nextLine();
+        Nhap.nextLine();
+        this.ngaySinh = null;
+        SimpleDateFormat d = new SimpleDateFormat("dd/MM/yyyy");
+        boolean Ktra = false;
+        while (!Ktra) {
+            System.out.println("Nhap ngay sinh cua nhan vien: ");
+            try {
+                ngaySinh = d.parse(Nhap.nextLine());
+                Ktra = true;
+            } catch (Exception ex) {
+                System.out.println("Ngay sinh khong hop le, vui long kiem tra lai.");
+            }
         }
+        System.out.println("Nhap vao dia chi nhan vien");
+        this.diaChi = Nhap.nextLine();        
     }
 
     // Xuất thông tin nhân viên
@@ -40,18 +48,16 @@ public abstract class NhanVien {
     }
 
     // Getters and Setters
-    public String getMaNV() {
+    public String getMaNV(){
         return maNV;
     }
-
-    public void setMaNV(String maNV) {
+    public void setMaNV(String maNV){
         this.maNV = maNV;
     }
 
     public String getHoTen() {
         return hoTen;
     }
-
     public void setHoTen(String hoTen) {
         this.hoTen = hoTen;
     }
@@ -59,8 +65,15 @@ public abstract class NhanVien {
     public Date getNgaySinh() {
         return ngaySinh;
     }
-
     public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
+
+    public String getDiaChi(){
+        return diaChi;
+    }
+    public void setDiaChi(String diaChi){
+        this.diaChi = diaChi;
+    }  
+    
 }

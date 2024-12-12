@@ -1,18 +1,17 @@
-
 package QuanLyNhanVien ;
 
 import java.security.PublicKey;
 import java.sql.Date;
 
 
-public class NVQuanLy extends NhanVien implements Interface
+public class NVQuanLy extends NhanVien implements TinhLuong
 {
 
     private double luongCoBan;
     private double heSoLuong;
     
-    public NVQuanLy(String maNV, String hoTen, Date ngaySinh, double luongCoBan , double heSoLuong){
-        super( maNV, hoTen, ngaySinh);
+    public NVQuanLy(String maNV, String hoTen, Date ngaySinh, String diaChi, double luongCoBan, double heSoLuong) {
+        super(maNV, hoTen, ngaySinh, diaChi); 
         this.luongCoBan = luongCoBan;
         this.heSoLuong = heSoLuong;
     }
@@ -23,13 +22,14 @@ public class NVQuanLy extends NhanVien implements Interface
         this.luongCoBan = Nhap.nextDouble();
         System.out.println("Nhap vao he so luong");
         this.heSoLuong = Nhap.nextDouble();
+
     }
     // Xuất
     public void Xuat(){
         super.Xuat();
-        System.out.println("He so luong: " + heSoLuong);
-        System.out.println("luong co ban: "+ luongCoBan);
-        System.out.println("Tien luong nv quan ly: " + tinhLuong());
+        System.out.println("He so luong:" + heSoLuong);
+        System.out.println("luong co ban :"+ luongCoBan);
+        System.out.println("Tien luong nv quan ly :" + tinhLuong());
         
     }
     //set_get
