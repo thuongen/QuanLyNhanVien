@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Couple Selector</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .image-container { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+        .image-container img { width: 150px; height: 150px; object-fit: cover; border-radius: 10px; opacity: 0; transition: opacity 1s ease-in-out; }
+        .countdown { font-size: 24px; font-weight: bold; color: #555; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Chọn Ngẫu Nhiên Cặp Đôi</h1>
+
+    <label for="maleImages">Tải lên hình ảnh Nam:</label>
+    <input type="file" id="maleImages" accept="image/*" multiple><br><br>
+
+    <label for="femaleImages">Tải lên hình ảnh Nữ:</label>
+    <input type="file" id="femaleImages" accept="image/*" multiple><br><br>
+
+    <button onclick="selectRandomMale()">Chọn Cặp Đôi Ngẫu Nhiên</button>
+
+    <div class="countdown" id="countdown"></div>
+    <div class="image-container" id="resultContainer">
+        <!-- Hình ảnh sẽ được hiển thị ở đây -->
+    </div>
+
+    <script>
+        let maleImages = [];
+        let femaleImages = [];
+
+        document.getElementById('maleImages').addEventListener('change', (event) => {
+            maleImages = Array.from(event.target.files);
+        });
+
+        document.getElementById('femaleImages').addEventListener('change', (event) => {
+            femaleImages = Array.from(event.target.files);
+        });
+
+        function selectRandomMale() {
+            if (maleImages.length === 0 || femaleImages.length === 0) {
+                alert('Vui lòng tải lên ít nhất một hình ảnh nam và một hình ảnh nữ.');
+                return;
+            }
+
+            // Chọn ngẫu nhiên một hình ảnh nam
+            const randomMale = maleImages[Math.floor(Math.random() * maleImages.length)];
+
+            // Hiển thị hình nam
+            const resultContainer = document.getElementById('resultContainer');
+            resultContainer.innerHTML = `
+                <div>
+                    <img src="${URL.createObjectURL(randomMale)}" alt="Nam" id="maleImage">
+                    <p>Hình Nam</p>
+                </div>
+                <div id="femaleContainer">
+                    <!-- Hình Nữ sẽ xuất hiện ở đây sau 5 giây -->
+                </div>
+            `;
+
+            // Thêm hiệu ứng cho hình nam
+            document.getElementById("maleImage").style.opacity = 1;
+
+            // Bắt đầu đếm ngược 5 giây
+            startCountdown(5);
+        }
+
+        function startCountdown(seconds) {
+            const countdown = document.getElementById("countdown");
+            countdown.innerText = `Chờ ${seconds} giây...`;
+
+            let timer = setInterval(() => {
+                seconds--;
+                countdown.innerText = `Chờ ${seconds} giây...`;
+                if (seconds === 0) {
+                    clearInterval(timer);
+                    countdown.innerText = "";
+                    selectRandomFemale(); // Sau khi đếm ngược xong, chọn hình nữ
+                }
+            }, 1000);
+        }
+
+        function selectRandomFemale() {
+            const randomFemale = femaleImages[Math.floor(Math.random() * femaleImages.length)];
+            const femaleContainer = document.getElementById("femaleContainer");
+            
+            // Hiển thị hình nữ với hiệu ứng
+            femaleContainer.innerHTML = `
+                <img src="${URL.createObjectURL(randomFemale)}" alt="Nữ" id="femaleImage">
+                <p>Hình Nữ</p>
+            `;
+            
+            // Thêm hiệu ứng cho hình nữ
+            setTimeout(() => {
+                document.getElementById("femaleImage").style.opacity = 1;
+            }, 100);
+        }
+    </script>
+</body>
+</html>
